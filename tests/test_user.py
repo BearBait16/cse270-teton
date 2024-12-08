@@ -9,9 +9,12 @@ def test_unauthorized_access():
         "username": "admin",
         "password": "admin"
     }
+    
+    # Correct URL with query parameters for exact matching
+    full_url = f"{url}?username=admin&password=admin"
 
     # Mock the GET request
-    responses.add(responses.GET, url, status=401, body='')
+    responses.add(responses.GET, full_url, status=401, body='')
 
     response = requests.get(url, params=params)
     
